@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.calculatorBtn {
+    border: none;
+    background-color: #F7CE68;
+    font-size: larger;
+    border-radius: 15px;
+}
+.calculatorBtn:hover {
+    transition: ease-in-out 300ms;
+    background-color: #FBAB7E;
+
+    cursor: pointer;
+}
