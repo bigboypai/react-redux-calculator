@@ -4,7 +4,8 @@ export const calculatorSlice = createSlice({
   name: 'calculator',
   initialState: {
     currentOperand: '',
-    previousOperand: ''
+    previousOperand: '',
+    operation: '',
   },
   reducers: {
     clear: (state) => {
@@ -13,16 +14,27 @@ export const calculatorSlice = createSlice({
     },
     append: (state, action) => {
       state.currentOperand = state.currentOperand.toString() + action.payload.digit.toString();
-      console.log(state.currentOperand)
     },
-    selectOperations: (state, action) => {
-    },
-    compute: (state) => {}
+    selectOperation: (state, action) => {
+      if (state.previousOperand !== '') {
+        let computation;
+        const prev = parseFloat(state.previousOperand)
+        const current = parseFloat(state.currentOperand)
+        if (state.operation == '+') {
+          computation = prev + current
+        }
+        if (state.operation == '=') {
+          state.currentOperand = computation
+        }
+        state.currentOperand = computation
+      }
+      state.operation = action.payload.operation
+      state.previousOperand = state.currentOperand
+      state.currentOperand = ''
+    }
   },
 })
 
-export const { clear, append } = calculatorSlice.actions
+export const { clear, append, selectOperation } = calculatorSlice.actions
 
 export default calculatorSlice.reducer
-
-// Se necesitan tener dos valores even tho no los mostremos (ver línea 16 js calc GitHub)

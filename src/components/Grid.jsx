@@ -4,15 +4,16 @@ import DigitButton from "./DigitButton"
 import OperationButton from "./OperatorButton"
 import '../style/Grid.css'
 
-// para borrar:
 import { useSelector } from 'react-redux'
 const Grid = () => {
   const currentOperand = useSelector((state) => state.calculator.currentOperand)
-  
+  const previousOperand = useSelector((state) => state.calculator.previousOperand)
+
   return (
     <>
       <div className="parent">
-      <div className="div1"> { currentOperand } </div>
+      <div className="div1"> { previousOperand } </div>
+      <div className="div2"> { currentOperand } </div>
       <OperationButton operation="AC"/>
       <OperationButton operation="÷"/>
       <OperationButton operation="x"/>
